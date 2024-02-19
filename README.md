@@ -12,6 +12,8 @@ The Speciality Mapper is a Python tool aimed at providing accurate mapping of me
 
 - **Data Standardization**: By standardizing medical specialty names according to the entries in the taxonomy file, the tool ensures consistency and coherence in data representation. This promotes interoperability and enhances the reliability of downstream analyses and reporting.
 
+- **Speciality Comparision**: The tool provides functionality to compare the taxonomy codes of two different medical specialties. This can be achieved by creating an instance of the `Speciality_Mapper` class for each specialty, standardizing them to obtain their respective taxonomy codes, and then checking for the intersection of the taxonomy codes.
+
 ## Getting Started
 
 ### Installation
@@ -20,6 +22,7 @@ The Speciality Mapper is a Python tool aimed at providing accurate mapping of me
 
    ```bash
    git clone https://github.com/your-username/speciality-mapper.git
+
 
 2. Navigate to the project directory:
 
@@ -31,5 +34,12 @@ The Speciality Mapper is a Python tool aimed at providing accurate mapping of me
     ```bash
     pip install -r requirements.txt
 
-
 ### Usage
+
+1. Import the Speciality_Mapper class from the speciality_mapper.py file: 
+
+    ```bash
+    from speciality_mapper import Speciality_Mapper
+
+2.  
+
