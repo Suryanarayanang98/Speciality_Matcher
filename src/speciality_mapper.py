@@ -134,7 +134,7 @@ class Speciality_Mapper:
 
         results = []
         if search_term in classes:
-            data = taxonomy[taxonomy['Classification'] == search_term].drop_duplicates().reset_index(drop=True)
+            data = taxonomy[(taxonomy['Classification'] == search_term) & (taxonomy['Specialization'] == "")].drop_duplicates().reset_index(drop=True)
             taxonomy_code = list(data['Code'])
             if search_term not in specs:
                 return taxonomy_code
@@ -237,8 +237,9 @@ class Speciality_Mapper:
         """
         print(self.search_term)
         print(self.possible_taxonomy_codes_list)
+    
 
 if __name__ == "__main__":
-    spec = Speciality_Mapper("family Medicine addition medicine")
+    spec = Speciality_Mapper("Internal Medicine")
     spec.standardise_from_taxonomy()
     spec.print_data()

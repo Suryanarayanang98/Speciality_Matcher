@@ -22,7 +22,6 @@ Example:
 
 from speciality_mapper import Speciality_Mapper
 
-
 def speciality_comparer(speciality1, speciality2):
     """
     Compares two medical specialties and finds the intersection of their taxonomy codes.
@@ -42,7 +41,32 @@ def speciality_comparer(speciality1, speciality2):
 
     intersection = set(spec1.possible_taxonomy_codes_list).intersection(set(spec2.possible_taxonomy_codes_list))
 
-    if len(intersection) == 0:
-        return "No Match"
-    return "Match"
+    if len(intersection) != 0:
+        return "Match"
 
+    # Code to check if there are any speciality and a subspeciality is being compared
+    for taxonomy_code_1 in spec1.possible_taxonomy_codes_list:
+        if taxonomy_code_1[4:-1] == "0"*5:
+            for taxonomy_code_2 in spec2.possible_taxonomy_codes_list:
+                if taxonomy_code_2[:4] == taxonomy_code_1[:4]:
+                    return "Match"
+
+    return "No Match"
+        
+
+if __name__ == "__main__":
+    # Example 1
+    speciality1, speciality2 = "Internal Medicine", "Family Medicine"
+    print(speciality1, speciality2,speciality_comparer(speciality1, speciality2))
+
+    # Example 2
+    speciality1, speciality2 = "Addiction Medicine Internal Medicine Physician", "Addiction Medicine Family Medicine Physician"
+    print(speciality1, speciality2,speciality_comparer(speciality1, speciality2))
+
+    # Example 3
+    speciality1, speciality2 = "Addiction Medicine", "Internal Medicine"
+    print(speciality1, speciality2,speciality_comparer(speciality1, speciality2))
+
+    # Example 4
+    speciality1, speciality2 = "General Dentist", "ORAL & MAXILLOFACIAL PATHOLOGY"
+    print(speciality1, speciality2,speciality_comparer(speciality1, speciality2))
