@@ -2,6 +2,7 @@ import re
 from fuzzywuzzy import fuzz
 
 def remove_punct(text, exclusions="", replace_with=" "):
+        
         """
         Remove punctuation from a given text, with optional exclusions and replacement.
 
@@ -13,14 +14,15 @@ def remove_punct(text, exclusions="", replace_with=" "):
         Returns:
         - str: The text with punctuation removed.
         """
+
         # Define a set of default punctuation characters
-        punctuations = "¯.,!™¥-♥#$%&:;\()+-<=>@[\\]^_`{|}~/¯( ͡° ͜ʖ ͡°) ͜ʖ° ͜ʖ ͡°ʖ ͡☉ ͡☉ ͡ ͡ ͡  ͡ ▌░╔╗║╔═╗├│Γû╝├▒»ΓÇÖ"
+        punctuations = "¯.,!™¥-♥#$%&:;()+-<=>@[\\]^_`{|}~/¯( ͡° ͜ʖ ͡°) ͜ʖ° ͜ʖ ͡°ʖ ͡☉ ͡☉ ͡ ͡ ͡  ͡ ▌░╔╗║╔═╗├│Γû╝├▒»ΓÇÖ"
 
         # Remove characters in exclusions from the default set of punctuation
         for ex in exclusions:
             punctuations = punctuations.replace(ex, "")
 
-        # Replace each punctuation character with the specified replacement character
+      # Replace each punctuation character with the specified replacement character
         for p in punctuations:
             text = text.replace(p, replace_with)
 
@@ -47,7 +49,12 @@ def remove_punct(text, exclusions="", replace_with=" "):
 
 
 def get_fuzz_score(str1,str2):
-    return 0.4*fuzz.token_sort_ratio(str1,str2)+0.6*fuzz.token_set_ratio(str1,str2)
+    score = 0.2*fuzz.token_sort_ratio(str1,str2)+0.8*fuzz.token_set_ratio(str1,str2) - 5 * abs(len(str1.split()) - len(str2.split()))/(len(str1.split())+len(str2.split()))
+    if score>=80:
+        print(str1)
+        print(str2)
+        print(score)
+    return score
 
 def remove_abbv(x,update_cache = {}):
     abbrev={"MED":"MEDICINE","INT":"INTERNAL","PHYS":"PHYSICIAN","PRAC":"PRACTICE","CNTR":'CENTER','PSYCH':"PSYCHIATRY",
@@ -80,4 +87,27 @@ def remove_abbv(x,update_cache = {}):
         else:
             new_list.append(word)
     return " ".join(new_list)
-remove_abbv('CRNA CERTIFIED REGISTERED NURSE ANESTHETIST')
+
+
+def rephrase(x):
+    modifications_dict={"General Dentistry":"Dentist","Neurosurgery":'Neurological Surgery',
+                    "Endocrinology":'Endocrinology, Diabetes & Metabolism',"Psychology":"Psychologist",
+                    'General Surgery':"Surgery","Hematology/Oncology":"Hematology & Oncology","Podiatry":"Podiatrist",
+                    "Audiology":"Audiologist","Orthodontics":"Orthodontics and Dentofacial Orthopedics",
+                    "Cardiology":"Interventional Cardiology","PULMONARY MEDICINE":"PULMONARY DISEASE",
+                    "ORAL SURGERY":"ORAL & MAXILLOFACIAL SURGERY","NEUROTOLOGY":"Otology & Neurotology",
+                    "CHIROPRACTIC MEDICINE":"CHIROPRACTOR",'PHYSICAL MEDICINE & REHAB':"PHYSICAL MEDICINE & REHABILITATION",
+                    "CARDIOTHORACIC SURGERY":"Thoracic Surgery (Cardiothoracic Vascular Surgery)","ACUPUNCTURE SERVICES":"ACUPUNCTURIST",
+                    "OPTOMETRY":"OPTOMETRIST",'CARDIAC SURGERY':"Vascular Surgery",'family practice':"Family Medicine",
+                    'PSYCHOLOGY PHD':"Psychologist","MARRIAGE FAMILY FOCUS":"MARRIAGE & FAMILY THERAPIST","OB GYN":"OBSTETRICS & GYNECOLOGY","WOMEN'S ISSUES":"WOMEN'S HEALTH",
+                    "MASTER'S LEVEL NURSE":"REGISTERED NURSE",'DIALECTIC BEHAVIORAL THERAPY':"BEHAVIOR ANALYST",'CRNA ANESTHETIST':"ANESTHESIOLOGY",
+                    'APPLIED BEHAVIORAL ANALYSIS':"BEHAVIOR ANALYST",'FAMILY PRACTICE SPECIALIST':"FAMILY MEDICINE",'PSYCHOLOGY HSPP':"Psychologist",
+                    "PSYCHIATRY BOARD CERTIFIED":"PSYCHIATRY",'THORACIC CARDIOVASCULAR SURGERY':"Thoracic Surgery (Cardiothoracic Vascular Surgery)",
+                    'MATERNAL & FETAL MED PERINATOLOGY':"MATERNAL & FETAL MEDICINE",'SURGERY THORACIC CARDIOVASCULAR':"Thoracic Surgery (Cardiothoracic Vascular Surgery)",
+                    "FEMALE PELVIC & RECON SURG":"FEMALE PELVIC MEDICINE & RECONSTRUCTIVE SURGERY","ADDICTION MEDICINE INT MED":"ADDICTION MEDICINE (INTERNAL MEDICINE) PHYSICIAN"
+                   }
+    target=x.upper().strip()
+    for mods in modifications_dict.keys():
+        if target==mods.upper().strip():
+            return modifications_dict[mods].upper().strip()
+    return x
