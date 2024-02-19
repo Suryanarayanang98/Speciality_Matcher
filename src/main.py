@@ -40,7 +40,7 @@ def speciality_comparer(speciality1, speciality2):
     spec1.standardise_from_taxonomy()
     spec2.standardise_from_taxonomy()
 
-    intersection = set(spec1.possible_taxonomy_codes_list).intersection(spec2.possible_taxonomy_codes_list)
+    intersection = set(spec1.possible_taxonomy_codes_list).intersection(set(spec2.possible_taxonomy_codes_list))
 
     if len(intersection) == 0:
         return "No Match"
