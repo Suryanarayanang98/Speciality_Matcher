@@ -22,6 +22,7 @@ This is done automatically in the speciality_comparer module, but if you want an
 ### Installation
 
 You can install the Speciality Mapper via pip:
+
     ```bash
     pip install speciality-matcher
 
