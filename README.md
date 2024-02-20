@@ -22,7 +22,6 @@ This is done automatically in the speciality_comparer module, but if you want an
 ### Installation
 
 You can install the Speciality Mapper via pip:
-
     ```bash
     pip install speciality-matcher
 
@@ -30,26 +29,25 @@ You can install the Speciality Mapper via pip:
 ### Usage
 
 1. Import the Speciality_Mapper class from the speciality_mapper.py file: 
-
     ```python
     from speciality_matcher.speciality_mapper import Speciality_Mapper
 
 
 2. Create an instance of Speciality_Mapper with the medical specialty as input:
-     ```bash
+     ```python
      spec_mapper = Speciality_Mapper("Medical Specialty")
 
 3. Use the standardise_from_taxonomy() method to standardize the input specialty and retrieve associated taxonomy codes:
-    ```bash
+    ```python
     spec_mapper.standardise_from_taxonomy()
 
 4. Access the standardized specialty and associated taxonomy codes:
-    ```bash
+    ```python
     print("Standardized Specialty:", spec_mapper.search_term)
     print("Associated Taxonomy Codes:", spec_mapper.possible_taxonomy_codes_list)
 
 5. For comparing two medical specialities, you can use the speciality_comparer module:
-    ```bash
+    ```python
     from speciality_matcher.speciality_comparer import speciality_comparer
     
     # Example 1
