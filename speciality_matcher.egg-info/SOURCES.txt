@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+setup.py
+data/__init__.py
+data/nucc_taxonomy_mapper.csv
+speciality_matcher.egg-info/PKG-INFO
+speciality_matcher.egg-info/SOURCES.txt
+speciality_matcher.egg-info/dependency_links.txt
+speciality_matcher.egg-info/requires.txt
+speciality_matcher.egg-info/top_level.txt
+src/__init__.py
+src/speciality_comparer.py
+src/speciality_mapper.py
+src/utils.py

@@ -1,0 +1,5 @@
+Metadata-Version: 2.1
+Name: speciality-matcher
+Version: 1.0.0
+Requires-Dist: fuzzywuzzy
+Requires-Dist: pandas
