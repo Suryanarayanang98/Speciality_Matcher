@@ -20,7 +20,7 @@ Example:
 
 """
 
-from speciality_mapper import Speciality_Mapper
+from src.speciality_mapper import Speciality_Mapper
 
 def speciality_comparer(speciality1, speciality2):
     """

@@ -47,7 +47,7 @@ Example:
 import pandas as pd
 import os
 
-from utils import *
+from src.utils import *
 
 class Speciality_Mapper:
     """
