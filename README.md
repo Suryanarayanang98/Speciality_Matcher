@@ -24,6 +24,7 @@ You can install the Speciality Mapper via pip:
     
 ```bash
 pip install speciality-matcher
+```
 
 
 
