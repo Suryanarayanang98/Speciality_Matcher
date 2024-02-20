@@ -1,7 +1,7 @@
-#main.py
+#speciality_comparer.py
 
 """
-Main Module:
+speciality_comparer Module:
 
         speciality_comparer:
         A function to compare two medical specialties and find the intersection of their taxonomy codes.
