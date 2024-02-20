@@ -26,11 +26,12 @@ You can install the Speciality Mapper via pip:
     ```bash
     pip install speciality-matcher
 
+
 ### Usage
 
 1. Import the Speciality_Mapper class from the speciality_mapper.py file: 
 
-    ```bash
+    ```python
     from speciality_matcher.speciality_mapper import Speciality_Mapper
 
 
