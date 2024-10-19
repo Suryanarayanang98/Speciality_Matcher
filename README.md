@@ -1,8 +1,8 @@
 # Speciality Mapper
 
-"""
+
 The Speciality Mapper is a Python tool aimed at providing accurate mapping of medical specialties to their corresponding taxonomy codes. This tool offers a robust set of features tailored to meet the diverse needs of healthcare professionals and researchers.
-"""
+
 
 ## Key Features
 
